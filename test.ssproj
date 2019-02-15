@@ -1,0 +1,11 @@
+[.ssproj]
+author=Michael Warner
+backCompatible=True
+buildDir=./
+compiler=Vanilla
+description=
+mainScript=main.js
+name=Project Osirius
+screenHeight=720
+screenWidth=1280
+

@@ -1,0 +1,9 @@
+{
+	"name": "Candle Graphics Library Test",
+	"version": 1,
+	"saveID": "testSave",
+	"author": "Michael Warner",
+	"summary": "Not your average dungeoncrawler",
+	"resolution": "1600x900",
+	"main": "scripts/main.js"
+}

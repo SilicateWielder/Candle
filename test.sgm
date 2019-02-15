@@ -1,0 +1,6 @@
+name=test
+author=Michael Warner
+description=
+script=main.js
+screen_width=1280
+screen_height=720
