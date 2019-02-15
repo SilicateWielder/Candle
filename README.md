@@ -1,2 +1,2 @@
 # Candle
-A Lightweight software renderer written in sphere
+A Lightweight software renderer written for sphere
