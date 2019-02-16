@@ -20,15 +20,11 @@ function oobCull(vA, vB, vC, vD)
     return doCull;
 }
 
-// WIP
-
-/* 
-* For a quadrilateral, calculate the 
-*/
+// culls polygons that are not facing the camera, done after projection onto the 2d plane
 function backfaceCull(poly, cache)
 {
     let cullable = true;
-    let cullVal = -5
+    let cullVal = -8
 
     let caseA = (poly[1].x - poly[0].x) * (poly[1].y + poly[0].y);
     let caseB = (poly[2].x - poly[1].x) * (poly[2].y + poly[1].y);

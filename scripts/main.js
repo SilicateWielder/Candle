@@ -1,8 +1,7 @@
 /*
  * Game that I need to think of a name for.
  * Written by Michael Warner
- * Version 0.2.9 Alpha
- * Last Update: 06/15/18
+ * Version 0.0.1 Alpha
  */
 
 // Sets the scale for rendering.
@@ -96,6 +95,8 @@ for (xpos = 0; xpos < mw; xpos++)
 let rotspeed = 0.5;
 let movspeed = 0.5;
 
+SSj.profile(this, 'CreateColor');
+SSj.profile(this, 'eTransformBlitMask');
 
 // Run our game.
 while (true)
@@ -147,13 +148,6 @@ while (true)
     }
 
 	modelA.blit(globalCamera.pos.x, globalCamera.pos.y, globalCamera.pos.z, globalCamera.rot.x, globalCamera.rot.y, globalCamera.rot.z);
-	
-	//console.render();
-
-	if(micronEnabled)
-	{
-    	canvas.render(0);
-    }
     
     //Control Player.
     playerControl();
@@ -164,8 +158,5 @@ while (true)
     //GetSystemFont().drawText(0, 230, "Seed: " + seed);
     render3dStats();
 
-    if(!micronEnabled)
-    {
-    	FlipScreen();
-    }
+  	FlipScreen();
 }

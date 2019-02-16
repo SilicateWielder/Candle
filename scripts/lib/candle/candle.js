@@ -13,14 +13,12 @@ const wireframeColor = CreateColor(255, 255, 255);
 const enableVertCaching = true; //Enforces caching of vertices for performance improvements (Useless????)
  
 // Set up soft parameters.
-let bobRossMode = false; // Painter's algorithm toggle.
+let bobRossMode = true; // Painter's algorithm toggle.
 let wireframesEnabled = false; // Enables the displaying of wireframes in place of textures.
 
 let wireframesForced = false; // forces the engine to render wireframes only.
 
 let lightingEnabled = true; // Enables lighting calculations to be performed 
-
-let micronEnabled = false; // Enables the elusive and seemingly faster micron based rendering system.
 
 let bobRossPref = "";
 let bobRossSuff = "";
@@ -38,7 +36,9 @@ if (bobRossMode)
 // Announce loading process.
 Print ("  Loading Candle.js" + bobRossSuff + "...");
 
-// Load in the required scripts that are part of this library
+// Load in the required scripts that are part of this library.
+RequireScript("lib/candle/colors.js");
+
 RequireScript("lib/candle/vect2.js");
 RequireScript("lib/candle/vect3.js");
 

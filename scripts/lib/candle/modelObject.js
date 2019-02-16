@@ -14,7 +14,7 @@ RequireScript('lib/candle/quad.js');
 RequireScript('lib/candle/lighting.js');
 RequireScript('lib/candle/culling.js');
  
-let lt = CreateColor(255, 255, 255);
+let lt = colors.get(255, 255, 255);
 
 function eTransformBlitMask(source, x1, y1, x2, y2, x3, y3, x4, y4, mask)
 {
@@ -92,7 +92,7 @@ let modelObject = function(x, y, z, rx, ry, rz)
 	this.polygons = [];
 	
 	this.textures = [];
-	this.textures["default"] = CreateSurface(40, 40, CreateColor(100, 100, 100)).createImage();
+	this.textures["default"] = CreateSurface(40, 40, colors.get(100, 100, 100)).createImage();
 	
 	this.light = [];
 }
@@ -300,7 +300,7 @@ modelObject.prototype.blit = function(x, y, z, rx, ry, rz)
              		}
 
 			             		
-	              	eTransformBlitMask(this.textures[this.polygons[currentPoly].texture], tA.x, tA.y, tB.x, tB.y, tC.x, tC.y, tD.x, tD.y, CreateColor(lightLevel, lightLevel, lightLevel));
+	              	eTransformBlitMask(this.textures[this.polygons[currentPoly].texture], tA.x, tA.y, tB.x, tB.y, tC.x, tC.y, tD.x, tD.y, colors.get(lightLevel, lightLevel, lightLevel));
                 }
                 renderedPolys ++;
             } else {
@@ -315,6 +315,7 @@ modelObject.prototype.blit = function(x, y, z, rx, ry, rz)
 
     GetSystemFont().drawText(0, 200, "Rendered Polygons: " + renderedPolys);
     GetSystemFont().drawText(0, 215, "Culled Polygons: " + culledPolys);
+    GetSystemFont().drawText(0, 230, "Total Polygon Count: " + this.polygons.length);
 }
 
 Print("      ...Loaded ModelOject.js");

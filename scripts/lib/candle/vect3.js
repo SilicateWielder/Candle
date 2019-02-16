@@ -21,7 +21,7 @@ function primeMath(precision)
 	{
 		fastCos[i] = Math.cos(i * ratio);
 		fastSin[i] = Math.sin(i * ratio);
-		print(i + ' - ' + fastCos[i]);
+		//print(i + ' - ' + fastCos[i]);
 	}
 }
 
