@@ -100,26 +100,35 @@ let movspeed = 0.5;
 // Run our game.
 while (true)
 {
-    //bg.blit(0, 0);
+    bg.blit(0, 0);
 	
 	if (globalCamera.rot.x > 360)
 	{
 		globalCamera.rot.x -= 360;
-	} else if (globalCamera.rot.x < 0) {
+	} else if (globalCamera.rot.x == 0)
+    {
+        globalCamera.rot.x = 360;
+    } else if (globalCamera.rot.x < 0) {
 		globalCamera.rot.x += 360;
 	}
 	
 	if (globalCamera.rot.y > 360)
 	{
 		globalCamera.rot.y -= 360;
-	} else if (globalCamera.rot.y < 0) {
+	} else if (globalCamera.rot.y == 0)
+    {
+        globalCamera.rot.y = 360;
+    } else if (globalCamera.rot.y < 0) {
 		globalCamera.rot.y += 360;
 	}
 	
 	if (globalCamera.rot.z > 360)
 	{
 		globalCamera.rot.z -= 360;
-	} else if (globalCamera.rot.z < 0) {
+	} else if (globalCamera.rot.z == 0)
+    {
+        globalCamera.rot.z = 360;
+    } else if (globalCamera.rot.z < 0) {
 		globalCamera.rot.z += 360;
 	}
 	

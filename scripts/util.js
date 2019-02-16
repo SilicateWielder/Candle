@@ -37,6 +37,7 @@ function rotate2 (x, y, r)
 	return([lx, ly]);
 }
 
+// I don't know what I was doing with this
 function rotate(x, y, z, rx, ry, rz)
 {
 	let l = rotate2(x, y, rx);

@@ -27,36 +27,20 @@ function oobCull(vA, vB, vC, vD)
 */
 function backfaceCull(poly, cache)
 {
-    let cull = true;
+    let cullable = true;
+    let cullVal = -5
 
-    //print('0 - ' + poly[0].x + ', ' + poly[0].y);
-    //print('1 - ' + poly[1].x + ', ' + poly[1].y);
-    //print('2 - ' + poly[2].x + ', ' + poly[2].y);
-    //print('3 - ' + poly[3].x + ', ' + poly[3].y);
-
-    sizeA = (poly[3].x - poly[0].x);
-    sizeB = (poly[2].x - poly[1].x);
-    sizeC = (poly[1].y - poly[0].y);
-    sizeD = (poly[2].y - poly[3].y);
-    
-    //print(sizeA + ', ' + sizeB);
-    //print(sizeC + ', ' + sizeD);
-    
-    let cullVal = 0;
-
-    if(sizeA < cullVal && sizeB < cullVal)
+    let caseA = (poly[1].x - poly[0].x) * (poly[1].y + poly[0].y);
+    let caseB = (poly[2].x - poly[1].x) * (poly[2].y + poly[1].y);
+    let caseC = (poly[3].x - poly[2].x) * (poly[3].y + poly[2].y);
+    let caseD = (poly[0].x - poly[3].x) * (poly[0].y + poly[3].y);
+    let sum = caseA + caseB + caseC + caseD;
+    if (sum < cullVal)
     {
-        //print('cull');
-        cull = false;
+        cullable = false;
     }
 
-    if(sizeC < cullVal && sizeD < cullVal)
-    {
-        //print('cull');
-        cull = false;
-    }
-
-    return (cull);
+    return (cullable);
 }
 
 Print("         " + bobRossPref + "Loaded culling.js");
