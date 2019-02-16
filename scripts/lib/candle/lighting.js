@@ -16,7 +16,7 @@ function findLightLevel(vectA, vectB)
     }
 
     let level = ((levelX + levelY) / 2);
-    return(level);
+    return(Math.round(level));
 }
 
 Print("         " + bobRossPref + "Loaded lighting.js");

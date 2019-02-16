@@ -20,7 +20,7 @@ RequireScript("UI/ui.js");
 RequireScript("playerControl.js");
 
 
-console.addTypeset("Test", false, CreateColor(255, 0, 0));
+console.addTypeset("Test", false, colors.get(255, 0, 0));
 
 let sun = {};
 sun.x = 45;
@@ -95,7 +95,9 @@ for (xpos = 0; xpos < mw; xpos++)
 let rotspeed = 0.5;
 let movspeed = 0.5;
 
-SSj.profile(this, 'CreateColor');
+SSj.profile(global, 'CreateColor');
+SSj.profile(colors, 'get');
+SSj.profile(colors, 'getTemp');
 SSj.profile(this, 'eTransformBlitMask');
 
 // Run our game.

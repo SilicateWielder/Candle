@@ -300,7 +300,7 @@ modelObject.prototype.blit = function(x, y, z, rx, ry, rz)
              		}
 
 			             		
-	              	eTransformBlitMask(this.textures[this.polygons[currentPoly].texture], tA.x, tA.y, tB.x, tB.y, tC.x, tC.y, tD.x, tD.y, colors.get(lightLevel, lightLevel, lightLevel));
+	              	eTransformBlitMask(this.textures[this.polygons[currentPoly].texture], tA.x, tA.y, tB.x, tB.y, tC.x, tC.y, tD.x, tD.y, colors.getTemp(lightLevel, lightLevel, lightLevel));
                 }
                 renderedPolys ++;
             } else {
