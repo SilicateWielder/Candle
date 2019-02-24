@@ -92,7 +92,7 @@ for (xpos = 0; xpos < mw; xpos++)
 	}
 }
 
-let rotspeed = 0.5;Screenshot at 2019-02-16 18-47-26Screenshot at 2019-02-16 18-47-26
+let rotspeed = 0.5;
 let movspeed = 0.5;
 
 SSj.profile(global, 'CreateColor');
