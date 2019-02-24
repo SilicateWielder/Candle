@@ -22,14 +22,18 @@ RequireScript("playerControl.js");
 
 console.addTypeset("Test", false, colors.get(255, 0, 0));
 
-let sun = {};
-sun.x = 45;
-sun.y = 45;
+// Create a standard lightsource, the sun!
+let sun = new lightSource(0, 0, 0, 255, 255, 0); 
 
-let bg = CreateSurface(GetScreenWidth(), GetScreenHeight(), CreateColor(125, 125, 255));
+// Sky background for demo.
+let bg = CreateSurface(GetScreenWidth(), GetScreenHeight(), colors.get(125, 125, 255));
 
+// Generate a seed for the terrain generator.
 let seed = Math.random() * 5345352432
 
+print("Begining terrain generation...\nSeed is: " + seed);
+
+// Prepare and generate a terrain mesh.
 let modelA = new modelObject(0, 0, 0, 0, 0, 0);
 
 let mw = 80;
@@ -52,6 +56,7 @@ function genTile (xp, yp)
 	return(cache);
 }
 
+// Begin assembling the mesh
 let tile = 0;
 for (xpos = 0; xpos < mw; xpos++)
 {
@@ -88,23 +93,29 @@ for (xpos = 0; xpos < mw; xpos++)
 
         let tex = Math.floor((pa.z / 100000000000) * textures.length);
         //print(pa);
-		modelA.definePoly(pa, pb, pc, pd, 0, 0, 0, 0, 0, 0, textures[0]);
+		modelA.definePoly(pa, pb, pc, pd, textures[0]);
 	}
+    print("Generating terrain... [" +  Math.floor(xpos/mw * 100) + "%]"); 
 }
+print("Terrain generation complete!");
 
+// Define movement and rotation speed factors.
 let rotspeed = 0.5;
 let movspeed = 0.5;
 
+// Profiling stuff
 SSj.profile(global, 'CreateColor');
 SSj.profile(colors, 'get');
 SSj.profile(colors, 'getTemp');
-SSj.profile(this, 'eTransformBlitMask');
-
+SSj.profile(Shape, 'drawImmediate');
+SSj.profile(global, 'backfaceCull');
+SSj.profile(global, 'oobCull');
 // Run our game.
 while (true)
 {
     bg.blit(0, 0);
 	
+    // Get user input.
 	if (globalCamera.rot.x > 360)
 	{
 		globalCamera.rot.x -= 360;
@@ -122,7 +133,7 @@ while (true)
     {
         globalCamera.rot.y = 360;
     } else if (globalCamera.rot.y < 0) {
-		globalCamera.rot.y += 360;
+		globalCamera.rot.y += 360;https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html
 	}
 	
 	if (globalCamera.rot.z > 360)
@@ -135,20 +146,7 @@ while (true)
 		globalCamera.rot.z += 360;
 	}
 	
-    if(sun.x < 360)
-    {
-        sun.x += 1;
-    } else {
-        sun.x = 0;
-    }
-
-    if(sun.y < 360)
-    {
-        sun.y+= 1;
-    } else {
-        sun.y = 0;
-    }
-
+    // Render model.
 	modelA.blit(globalCamera.pos.x, globalCamera.pos.y, globalCamera.pos.z, globalCamera.rot.x, globalCamera.rot.y, globalCamera.rot.z);
     
     //Control Player.
@@ -157,7 +155,7 @@ while (true)
     //Developer Key checks.
     candleDevKeys(KEY_F1, KEY_F2, KEY_F3, KEY_F4);
     
-    //GetSystemFont().drawText(0, 230, "Seed: " + seed);
+    GetSystemFont().drawText(0, 245, "Seed: " + seed);
     render3dStats();
 
   	FlipScreen();

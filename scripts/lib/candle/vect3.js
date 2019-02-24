@@ -7,6 +7,7 @@
  * Used to manage points in 3 dimensional space
  */
 
+// Cache Cos and Sin math
 let mathPrec = 180;
 let mathRatio = mathPrec / 3.141459265;
 let fastCos = {};
@@ -26,8 +27,6 @@ function primeMath(precision)
 }
 
 primeMath(0.5);
-
-print(findSpread(0, 10, 10, 0));
 
 var vect3 = function (x, y, z)
 {
@@ -66,12 +65,8 @@ vect3.prototype.rotate = function(rx, ry, rz)
 		let rxa = rx * this.ratio;
 		let rya = ry * this.ratio;
 		let rza = rz * this.ratio;
-		
-		let cos = Math.cos;
-		let sin = Math.sin;
 
 		let xca = fastCos[rxa]; //cosa
-		//print(xca);
 		let xsa = fastSin[rxa]; //sina
 		
 		let yca = fastCos[rya]; //cosb
@@ -95,8 +90,6 @@ vect3.prototype.rotate = function(rx, ry, rz)
 		let x3 = (zca * x1) - (zsa * y2);
 		let y3 = (zsa * x1) + (zca * y2);
 		let z3 = z2;
-
-		
 		    
 		this.pub.x = x3;
 		this.pub.y = y3;

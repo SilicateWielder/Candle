@@ -20,6 +20,14 @@ function findAngle(xA, yA, xB, yB)
     return (angle);
 }
 
+function findAngleThree(xA, yA, zA, xB, yB, zB)
+{
+    let num = (xA * xB) + (yA * yB) + (zA * zB)
+    let den = Math.sqrt((xA * xA) + (yA * yA) + (zA * zA)) * ((xB * xB) + (yB * yB) + (zB * zB)); //Typed longhand rather than using Math.pow for sake of less spaghett.
+    
+    return (Math.acos(num/den));
+}
+
 function angleSum (valA, valB)
 {
     let newVal = valA + valB;

@@ -21,10 +21,10 @@ function oobCull(vA, vB, vC, vD)
 }
 
 // culls polygons that are not facing the camera, done after projection onto the 2d plane
-function backfaceCull(poly, cache)
+function backfaceCull(poly)
 {
     let cullable = true;
-    let cullVal = -8
+    let cullVal = -8 // threshold at which to cull a polygon.
 
     let caseA = (poly[1].x - poly[0].x) * (poly[1].y + poly[0].y);
     let caseB = (poly[2].x - poly[1].x) * (poly[2].y + poly[1].y);

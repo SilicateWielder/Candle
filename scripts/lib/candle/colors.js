@@ -8,7 +8,7 @@ fastColors.prototype = {};
 
 fastColors.prototype.get = function(r, g, b, a = 255)
 {
-    let id = r + (g * 255) + (b * 65025) + (a * 26581375);
+    let id = r + (g<<8) + (b<<16) + (a<<24);
 
     if (this.colors[id] == null)
     {

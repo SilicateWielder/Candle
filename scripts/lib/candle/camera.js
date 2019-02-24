@@ -7,9 +7,13 @@
  * Used to a camera in 3d space.
  */
  
+ // TODO: Turn the camera into an explicit surface for rendering.
+ 
  let cameraObject = function(fov, sX, sY, sZ, rX, rY, rZ)
  {
  	this.fov = 400;
+    
+    this.output = CreateSurface(GetScreenWidth(), GetScreenHeight(), colors.get(0, 0, 0, 0));
  	
 	this.pos = {};
 	this.pos.x = sX;

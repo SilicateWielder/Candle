@@ -1,22 +1,23 @@
-// Calculates the light level of a quad based on it's angle along the X and Y axis.
-function findLightLevel(vectA, vectB)
+let lightSource = function(x, y, z, r, g, b)
 {
-    let rawLevel = getAngleSimilarity(vectA, vectB, 135);
-    let levelX = rawLevel.x * 255 + 0.00001;
-    let levelY = rawLevel.y * 255 + 0.00001;
+    this.x = x;
+    this.y = y;
+    this.z = Z;
+    this.r = r;
+    this.g = g;
+    this.b = b; 
+}
 
-    if (levelX > 255)
+// Calculates the light level of a quad based on it's angle along the X and Y axis.
+function findLightLevel(vectA, lights)
+{
+    let lightLevel = [];
+
+    for(l = 0; l < lights.length; l++)
     {
-        levelX = 255 - (levelX - 255);
+        //print("calculating light level " + (l + 1) + "/" + lights.length);
     }
-
-    if (levelY > 255)
-    {
-        levelY = 255 - (levelY - 255);
-    }
-
-    let level = ((levelX + levelY) / 2);
-    return(Math.round(level));
+    return(125);
 }
 
 Print("         " + bobRossPref + "Loaded lighting.js");

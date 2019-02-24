@@ -38,6 +38,7 @@ Print ("  Loading Candle.js" + bobRossSuff + "...");
 
 // Load in the required scripts that are part of this library.
 RequireScript("lib/candle/colors.js");
+RequireScript("lib/candle/textures.js");
 
 RequireScript("lib/candle/vect2.js");
 RequireScript("lib/candle/vect3.js");

@@ -1,6 +1,7 @@
 //Useful for define quadrilaterals within a mesh.
 
-// Utility to determine orientation of a quad.
+// Calculates the orienation of a quad along it's x and y axis.
+// Could probably be improved, I lack the mathematical knowlege.
 function findQuadOrientation(cA, cB, cC, cD)
 {
         /*
