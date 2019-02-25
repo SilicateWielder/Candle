@@ -133,7 +133,7 @@ while (true)
     {
         globalCamera.rot.y = 360;
     } else if (globalCamera.rot.y < 0) {
-		globalCamera.rot.y += 360;https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html
+		globalCamera.rot.y += 360;
 	}
 	
 	if (globalCamera.rot.z > 360)
