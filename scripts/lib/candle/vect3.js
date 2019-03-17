@@ -44,6 +44,8 @@ var vect3 = function (x, y, z)
 		this.flat.x = 0;
 		this.flat.y = 0;
 		
+		this.origin = {};
+		
 		this.rot = {};
 		this.rot.x = 0;
 		this.rot.y = 0;
@@ -53,13 +55,18 @@ var vect3 = function (x, y, z)
 vect3.prototype = {}
 
 // Rotates a vector
-vect3.prototype.rotate = function(rx, ry, rz)
+vect3.prototype.rotate = function(rx, ry, rz, origin = {"x":0, "y":0, "z":0})
 {
-	if (rx != this.rot.x || ry != this.rot.y || rz != this.rot.z)
+	if (rx != this.rot.x || ry != this.rot.y || rz != this.rot.z || this.origin != origin)
 	{
+		this.origin = origin;
 		this.rot.x = rx;
 		this.rot.y = ry;
 		this.rot.z = rz;
+		
+		let posX = this.x + origin.x;
+		let posY = this.y + origin.y;
+		let posZ = this.z + origin.z;
 		
 		// Calculate the ratio for degrees to radians
 		let rxa = rx * this.ratio;
@@ -75,11 +82,10 @@ vect3.prototype.rotate = function(rx, ry, rz)
 		let zca = fastCos[rza]; //cosc
 		let zsa = fastSin[rza]; //sinc
 
-		/* THIS SECTION OF CODE IS KNOWN TO WORK, IN CASE OF PROBLEMS DO NOT DELETE */
 		// Rotate around the Y axis.
-		let x1 = (yca * this.x) - (ysa * this.z);
-		let y1 = this.y;
-		let z1 = (ysa * this.x) + (yca * this.z);
+		let x1 = (yca * posX) - (ysa * posZ);
+		let y1 = posY;
+		let z1 = (ysa * posX) + (yca * posZ);
 		
 		// Rotate around the X axis.
 		let x2 = x1;
@@ -135,5 +141,11 @@ vect3.prototype.flatten = function()
 	this.flat.x = x1c;
 	this.flat.y = y1c;
 }
+
+vect3.prototype.blit = function(x, y)
+{
+	this.flatten();
+	Rectangle(x + this.flat.x, y + this.flat.y, 3, 3, colors.get(255, 0 ,255));
+};
 
 Print("    " + bobRossPref + "Loaded Vector3.js");

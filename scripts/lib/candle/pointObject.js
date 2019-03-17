@@ -43,10 +43,10 @@ let pointObject = function(lX, lY, lZ)
 	
 }
 
-pointObject.prototype.rotate = function(rX, rY, rZ, origin = {"x":0, "y":0, "z":0})
+pointObject.prototype.rotate = function(rX, rY, rZ, origin = {"x":0, "y":0, "z":0}, offset = {"x":0, "y":0, "z":0})
 {
 	
-	this.vector.rotate(rX, rY, rZ);
+	this.vector.rotate(rX, rY, rZ, offset);
 	
 	let scaleFactor = globalCamera.fov / (globalCamera.fov + (this.vector.pub.z + origin.z));
 	

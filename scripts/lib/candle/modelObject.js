@@ -28,6 +28,11 @@ let modelObject = function(x, y, z, rx, ry, rz)
 	this.ry = ry;
 	this.rz = rz;
 	
+	this.pos = {};
+	this.pos.x = 0;
+	this.pos.y = 0;
+	this.pos.z = 0;
+	
 	this.points = [];
 	this.pointCache = [];
 	this.polygons = [];
@@ -71,9 +76,7 @@ modelObject.prototype.definePoly = function(p1, p2, p3, p4, texture)
 
 modelObject.prototype.place = function(x, y, z)
 {
-	this.x = x;
-	this.y = y;
-	this.z = z;
+	this.pos = {"x": x, "y": y, "z": z};
 }
 
 modelObject.prototype.move = function(x, y, z)
@@ -85,7 +88,7 @@ modelObject.prototype.move = function(x, y, z)
 
 // Self expanatory, blits a model onto the screen.
 // NOTE: Break this monster into more tame bits, slimes are more bearable than dragons. (Usually)
-modelObject.prototype.blit = function(x, y, z, rx, ry, rz, lights)
+modelObject.prototype.blit = function(x, y, z, rx, ry, rz, lights, textureOveride = [])
 {
     let lines = [];
     let modelOrigin = {"x":x, "y":y, "z":z};
@@ -101,7 +104,7 @@ modelObject.prototype.blit = function(x, y, z, rx, ry, rz, lights)
     for(let c = 0; c < this.pointCache.length; c++)
     {
         let refID = this.pointCache[c];
-		this.points[refID].rotate(rx, ry, rz, modelOrigin);
+		this.points[refID].rotate(rx, ry, rz, modelOrigin, this.pos);
     }
 	
     // Polygons stat variables.
@@ -150,6 +153,35 @@ modelObject.prototype.blit = function(x, y, z, rx, ry, rz, lights)
     GetSystemFont().drawText(0, 200, "Rendered Polygons: " + renderedPolys);
     GetSystemFont().drawText(0, 215, "Culled Polygons: " + culledPolys);
     GetSystemFont().drawText(0, 230, "Total Polygon Count: " + this.polygons.length);
+}
+
+modelObject.prototype.pointBlit = function(x, y, z, rx, ry, rz)
+{
+	 let lines = [];
+    let modelOrigin = {"x":x, "y":y, "z":z};
+
+	if (!this.stationary)
+    { 
+        modelOrigin.x += this.x;
+        modelOrigin.y += this.y;
+        modelOrigin.z += this.z;
+    }
+    
+    // Rotate all of our mesh points (vertices).
+    for(let c = 0; c < this.pointCache.length; c++)
+    {
+        let refID = this.pointCache[c];
+		this.points[refID].rotate(rx, ry, rz, modelOrigin);
+		let coord = this.points[refID].get2d();
+		Rectangle(coord.x + (GetScreenWidth() / 2) - 1, coord.y + (GetScreenHeight() / 2) - 1, 3, 3, colors.get(255, 255, 255))
+    }
+
+	for(p = 0; p < this.points.length; p++)
+	{
+		let poly = this.polygons[p];
+		
+		let tA = this.points[poly.pointA].get2d();
+	}
 }
 
 Print("      ...Loaded ModelOject.js");

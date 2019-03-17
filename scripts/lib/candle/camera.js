@@ -62,7 +62,7 @@ cameraObject.prototype.setRotation = function(rx, ry, rz)
 	this.rot.z = rz;
 }
 
-var globalCamera = new cameraObject(300, 0, 0, 1000, 280, 0, 0);
+var globalCamera = new cameraObject(300, 0, 0, 0, 0, 0, 0);
 // Initialize the default worldspace. comment out this line to utilize multiple worldspaces.
 
 Print("    " + bobRossPref + "Loaded Camera.js");
