@@ -3,6 +3,7 @@ function getAngleSimilarity(vectA, vectB, range)
     let dif = {};
     dif.x = Math.abs((vectA.x - vectB.x) / range);
     dif.y = Math.abs((vectA.y - vectB.y) / range);
+    dif.z = Math.abs((vectA.z - vectB.z) / range);
 
     return(dif);
 }

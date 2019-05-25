@@ -50,6 +50,38 @@ let pointObject = function(lX, lY, lZ)
 	
 }
 
+pointObject.prototype.setPosition = function(x, y, z)
+{
+	this.vector.modify(x, y, z);
+	
+	this.x = x;
+	this.y = y;
+	this.z = z;
+	
+	if(this.x == 0)
+    {
+        this.x = 0.0000001;
+    }
+
+    if (this.y == 0)
+    {
+        this.y = 0.0000001;
+    }
+
+    if(this.z == 0)
+    {
+        this.z = 0.0000001;
+    }
+	
+	this.xp = this.x;
+	this.yp = this.y;
+	this.zp = this.z;
+	
+	this.flat.x = 0;
+	this.flat.y = 0;
+	
+}
+
 pointObject.prototype.setOrigin = function(lX, lY, lZ)
 {
 	this.origin.x = lX;
@@ -62,28 +94,14 @@ pointObject.prototype.rotate = function(rX, rY, rZ)
 	
 	this.vector.rotate(rX, rY, rZ);
 	
-	let scaleFactor = globalCamera.fov / (globalCamera.fov + (this.vector.pub.z + this.origin.z));
-	
-	if (scaleFactor < 0)
-	{
-        /*If our scalefactor is a negative value, we'll just overide it
-         * to be an absurd value, this automatically 'kicks' the point
-         * outside of the fied of view for the out-of-bounds culler to
-         * intercept. 
-         * It's an inadvertant visibility culler!
-         */
-		scaleFactor = 4223434324234;
-	};
-		
-	let x1c = (this.vector.pub.x + this.origin.x) * scaleFactor;
-	let y1c = (this.vector.pub.y + this.origin.y) * scaleFactor;
-	
 	this.xp = this.vector.pub.x + this.origin.x;
 	this.yp = this.vector.pub.y + this.origin.y;
 	this.zp = this.vector.pub.z + this.origin.z;
 	
-	this.flat.x = x1c;
-	this.flat.y = y1c;
+	let cache = cameraObject.project(this.xp, this.yp, this.zp);
+	
+	this.flat.x = cache.pos.x;
+	this.flat.y = cache.pos.y;
 }
 
 pointObject.prototype.retrieve = function()
@@ -94,7 +112,7 @@ pointObject.prototype.retrieve = function()
 	cache.z += this.origin.z;
 }
 
-pointObject.prototype.get2d = function()
+pointObject.prototype.get2d = function(xd, yd, zd)
 {
 	let cache = {};
 	cache.x = this.flat.x;

@@ -14,7 +14,7 @@ Print ("Loading dependencies...");
 RequireScript("lib/zeus.js");
 
 // Micron scaler layer
-RequireScript("lib/micron/micron.js");
+//RequireScript("lib/micron/micron.js");
 
 // Load in the Candle Graphics library
 RequireScript("lib/candle/candle.js");

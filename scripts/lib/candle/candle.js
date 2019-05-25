@@ -90,20 +90,6 @@ function candleDevKeys(keyA = KEY_F1, keyB = KEY_F2, keyC = KEY_F3, keyD = KEY_F
 		}
 	}
 	
-    
-    if(IsKeyPressed(keyD))
-	{
-		if (micronEnabled)
-		{
-			micronEnabled = false;
-		} else {
-			micronEnabled = true;
-		}
-		
-		while(IsKeyPressed(keyD))
-		{
-		}
-	}
 	//Reserve keyD for reloading textures.
 }
 
