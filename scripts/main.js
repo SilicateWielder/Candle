@@ -40,13 +40,14 @@ mix.volume = 0.25;
 let world = null;
 
 //Create a resource attributuion panel.
-let pane = CreateSurface(400, 20, colors.get(50, 50, 50, 100));
+let pane = CreateSurface(400, 30, colors.get(50, 50, 50, 200));
 function attrib()
 {
 	let font = GetSystemFont();
 	let left = GetScreenWidth() - pane.width;
 	pane.blit(left, 0);
-	font.drawText(left, 0, "Music by Eric Matyas");
+	font.drawText(left + 5, 0, "Music by Eric Matyas");
+	font.drawText(left + 5, 15, "www.soundimage.org");
 }
 
 // Create a floating miniSphere logo
